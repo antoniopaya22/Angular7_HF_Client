@@ -1,0 +1,48 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">Marca</label>
+        <input type="text" class="form-control" formControlName="marca" #marca />
+      </div>
+      <div *ngIf="angForm.controls['marca'].invalid && (angForm.controls['marca'].dirty || angForm.controls['marca'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['marca'].errors.required">
+          Marca es un campo obligatorio.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Modelo </label>
+        <input type="text" class="form-control" formControlName="modelo" #modelo />
+      </div>
+      <div *ngIf="angForm.controls['modelo'].invalid && (angForm.controls['modelo'].dirty || angForm.controls['modelo'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['modelo'].errors.required">
+          Modelo es un campo obligatorio.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Color </label>
+        <input type="text" class="form-control" formControlName="color" #color />
+      </div>
+      <div *ngIf="angForm.controls['color'].invalid && (angForm.controls['color'].dirty || angForm.controls['color'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['color'].errors.required">
+          Color es un campo obligatorio.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Propietario </label>
+        <input type="text" class="form-control" formControlName="propietario" #propietario />
+      </div>
+      <div *ngIf="angForm.controls['propietario'].invalid && (angForm.controls['propietario'].dirty || angForm.controls['propietario'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['propietario'].errors.required">
+          Propietario es un campo obligatorio.
+        </div>
+      </div>
+      <div class="form-group">
+        <button (click)="addLaptop(marca.value, modelo.value, color.value, propietario.value)"
+          [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">
+          Add Laptop
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
