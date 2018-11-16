@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { LaptopService } from 'src/app/laptop.service';
+import Laptop from 'src/app/laptop'
 
 @Component({
   selector: 'app-edit-laptop',
@@ -15,7 +16,9 @@ export class EditLaptopComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
-    private ls: LaptopService) { }
+    private ls: LaptopService) { 
+      this.createForm();
+    }
 
   createForm() {
     this.angForm = this.fb.group({
@@ -36,7 +39,9 @@ export class EditLaptopComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.ls.editLaptop(params['id']).subscribe(res => {
-        this.laptop = res;
+        this.laptop = new Laptop(params['id'],res['marca'],
+          res['modelo'],res['color'],res['propietario']);
+        console.log(this.laptop);
       });
     });
   }

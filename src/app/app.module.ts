@@ -31,6 +31,10 @@ const routes: Routes = [
   {
     path: 'laptops',
     component: AllLaptopsComponent
+  },
+  {
+    path: '',
+    component: AllLaptopsComponent
   }
 ];
 

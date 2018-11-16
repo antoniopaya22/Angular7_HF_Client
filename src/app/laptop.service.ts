@@ -35,9 +35,7 @@ export class LaptopService {
   }
 
   updateLaptop(marca, modelo, color, propietario, id) {
-
     const laptop = {
-      id : id,
       marca : marca,
       modelo : modelo,
       color : color,
@@ -45,7 +43,7 @@ export class LaptopService {
     };
     this
       .http
-      .put(`${this.baseUrl}/laptop`, laptop)
+      .put(`${this.baseUrl}/laptop/${id}`, laptop)
       .subscribe(res => console.log('Done'));
   }
 }
