@@ -11,12 +11,12 @@ import { LaptopService } from 'src/app/laptop.service';
 export class AddLaptopComponent implements OnInit {
 
   angForm: FormGroup;
+
   constructor(private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
     private ls: LaptopService) {
-      
-    this.createForm();
+      this.createForm();
   }
 
   createForm() {

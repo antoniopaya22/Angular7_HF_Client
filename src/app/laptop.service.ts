@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { NotifierService } from 'angular-notifier';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +8,12 @@ import { HttpClient } from '@angular/common/http';
 export class LaptopService {
 
   baseUrl = 'http://localhost:8081/api';
+  private readonly notifier: NotifierService;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    notifierService: NotifierService) {
+      this.notifier = notifierService;
+  }
 
   addLaptop(marca, modelo, color, propietario) {
     const laptop = {
@@ -19,19 +24,18 @@ export class LaptopService {
     };
     console.log(laptop);
     this.http.post(`${this.baseUrl}/laptop`, laptop)
-        .subscribe(res => console.log('Done'));
+        .subscribe(res => {
+          console.log('Done');
+          this.notifier.notify( 'success', 'Transaction id: '+res['trans_id'] );
+        });
   }
 
   getAllLaptops() {
-    return this
-           .http
-           .get(`${this.baseUrl}/laptops`);
+    return this.http.get(`${this.baseUrl}/laptops`);
   }
 
   editLaptop(id) {
-    return this
-            .http
-            .get(`${this.baseUrl}/laptop/${id}`);
+    return this.http.get(`${this.baseUrl}/laptop/${id}`);
   }
 
   updateLaptop(marca, modelo, color, propietario, id) {
@@ -41,9 +45,11 @@ export class LaptopService {
       color : color,
       propietario : propietario
     };
-    this
-      .http
+    this.http
       .put(`${this.baseUrl}/laptop/${id}`, laptop)
-      .subscribe(res => console.log('Done'));
+      .subscribe(res => {
+        console.log('Done');
+        this.notifier.notify( 'success', 'Transaction id: '+res['trans_id'] );
+      });
   }
 }

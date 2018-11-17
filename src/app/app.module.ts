@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NotifierModule } from 'angular-notifier';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -53,6 +54,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
     SlimLoadingBarModule,
+    NotifierModule,
     HttpClientModule
   ],
   exports: [RouterModule],
