@@ -5,6 +5,7 @@ import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NotifierModule } from 'angular-notifier';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,8 @@ import { AllLaptopsComponent } from './components/all-laptops/all-laptops.compon
 import { GetLaptopComponent } from './components/get-laptop/get-laptop.component';
 
 import { LaptopService } from './laptop.service';
+import { DeleteConfirmComponent } from './dialog/delete-confirm/delete-confirm.component';
+import { DialogConfirmService } from './dialog/delete-confirm/dialog-confirm.service';
 
 
 const routes: Routes = [
@@ -46,7 +49,8 @@ const routes: Routes = [
     AddLaptopComponent,
     EditLaptopComponent,
     AllLaptopsComponent,
-    GetLaptopComponent
+    GetLaptopComponent,
+    DeleteConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -54,11 +58,13 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
     SlimLoadingBarModule,
+    NgbModule.forRoot(),
     NotifierModule,
     HttpClientModule
   ],
   exports: [RouterModule],
-  providers: [LaptopService],
+  providers: [LaptopService,DialogConfirmService],
+  entryComponents: [ DeleteConfirmComponent ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

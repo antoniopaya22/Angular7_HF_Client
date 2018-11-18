@@ -38,6 +38,14 @@ export class LaptopService {
     return this.http.get(`${this.baseUrl}/laptop/${id}`);
   }
 
+  deleteLaptop(id) {
+    this.http.delete(`${this.baseUrl}/laptop/${id}`)
+        .subscribe(res => {
+          console.log('Done');
+          this.notifier.notify( 'success', 'Transaction id: '+res['trans_id'] );
+        });
+  }
+
   updateLaptop(marca, modelo, color, propietario, id) {
     const laptop = {
       marca : marca,
